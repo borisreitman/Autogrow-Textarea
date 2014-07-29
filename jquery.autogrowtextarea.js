@@ -27,8 +27,11 @@ jQuery.fn.autoGrow = function(params) {
 		var sendContentToMirror = function (textarea) {
 			mirror.innerHTML = String(textarea.value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br />') + '.<br/>.';
 
-			if (jQuery(textarea).height() != jQuery(mirror).height())
-				jQuery(textarea).height(Math.min(settings.maxHeight, jQuery(mirror).height()));
+			var height = jQuery(mirror).height();
+			if (jQuery(textarea).height() != height){
+				jQuery(textarea).height(Math.min(settings.maxHeight, height));
+				$(textarea).css("overflow-y", height > settings.maxHeight ? "auto" : "hidden");
+			}
 		}
 
 		var growTextarea = function () {

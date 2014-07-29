@@ -4,3 +4,7 @@ You may want to read my full blog post here :
 http://www.technoreply.com/autogrow-textarea-plugin-3-0/
 
 The plugin is licensed under Beerware. Go crazy!
+---
+
+Boris:
+Added options to limit height: $(element).autoGrow({ maxHeight: 400, autoScroll: true}); 

@@ -16,7 +16,7 @@
  */
 
 jQuery.fn.autoGrow = function(params) {
-  var settings = jQuery.extend({}, { maxHeight: Number.MAX_VALUE }, params);
+	var settings = jQuery.extend({}, { maxHeight: Number.MAX_VALUE, autoScroll: false }, params);
 	return this.each(function() {
 
 		var createMirror = function(textarea) {
@@ -31,6 +31,9 @@ jQuery.fn.autoGrow = function(params) {
 			if (jQuery(textarea).height() != height){
 				jQuery(textarea).height(Math.min(settings.maxHeight, height));
 				$(textarea).css("overflow-y", height > settings.maxHeight ? "auto" : "hidden");
+				if (settings.autoScroll){
+				  $(textarea)[0].scrollTop = $(textarea)[0].scrollHeight;
+				}
 			}
 		}
 

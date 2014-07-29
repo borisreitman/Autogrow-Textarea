@@ -15,7 +15,8 @@
  * Date: October 15, 2012
  */
 
-jQuery.fn.autoGrow = function() {
+jQuery.fn.autoGrow = function(params) {
+  var settings = jQuery.extend({}, { maxHeight: Number.MAX_VALUE }, params);
 	return this.each(function() {
 
 		var createMirror = function(textarea) {
@@ -27,7 +28,7 @@ jQuery.fn.autoGrow = function() {
 			mirror.innerHTML = String(textarea.value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br />') + '.<br/>.';
 
 			if (jQuery(textarea).height() != jQuery(mirror).height())
-				jQuery(textarea).height(jQuery(mirror).height());
+				jQuery(textarea).height(Math.min(settings.maxHeight, jQuery(mirror).height()));
 		}
 
 		var growTextarea = function () {
